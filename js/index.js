@@ -1,8 +1,3 @@
-window.onload = () => {
-    displayStores();
-    clickListStore();
-}
-
 let map;
 let markers = [];
 let infoWindow;
@@ -240,10 +235,38 @@ function initMap() {
     map.mapTypes.set('styled_map', styledMapType);
     map.setMapTypeId('styled_map');
     infoWindow = new google.maps.InfoWindow();
-    showStoresMarkers();
+    searchStores();
 }
 
-const displayStores = () => {
+const clearLocations = () => {
+    infoWindow.close();
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(null);
+    }
+    markers.length = 0;
+}
+
+
+const searchStores = () => {
+    let foundStores = [];
+    const zipcode = document.getElementById('zip-code-input').value;
+    if(zipcode) {
+        for(store of stores) {
+            const postal = store.address.postalCode.substring(0,5);
+            if(postal == zipcode) {
+                foundStores.push(store);
+            }
+        }
+    } else {
+        foundStores = stores;
+    }
+    clearLocations();
+    displayStores(foundStores);
+    showStoresMarkers(foundStores);
+    clickListStore();
+}
+
+const displayStores = (stores) => {
     let htmlStores = '';
 
     stores.map((store, index) => {
@@ -275,7 +298,7 @@ const displayStores = () => {
     });
 }
 
-const showStoresMarkers = () => {
+const showStoresMarkers = (stores) => {
     const bounds = new google.maps.LatLngBounds();
     stores.map((store, index) => {
         const name = store.name;
