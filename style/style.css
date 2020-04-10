@@ -64,19 +64,27 @@ body {
     left: 100px;
     bottom: 30px;
     z-index: 100;
+    display: flex;
     width: 400px;
+    overflow-y: hidden;
     background-color: #FEFFFE;
     border-radius: 30px;
 }
 
 .stores-list {
+    flex-grow: 1;
+    overflow-y: scroll;
     padding: .25em 1em;
 }
 
 .store-container {
     border-bottom: 1px solid #979797;
     padding: 1em 0;
-    
+    cursor: pointer;
+}
+
+.store-container:last-child {
+    border-bottom: none;
 }
 
 .store-container .store {
@@ -107,7 +115,7 @@ body {
 
 .store-container .store-address {
     color: #514C4C;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .store-container .store-address p {
@@ -129,4 +137,63 @@ body {
     border-radius: 20px;
     text-align: center;
     line-height: 1.35em;
+}
+
+/*** Google Maps Window  ***/
+.gmaps-window {
+    padding: .5em;
+}
+
+.card-up {
+    border-bottom: 1px solid #DFDDDD;
+    padding-bottom: 1.25em;
+}
+
+.card-up .card-name {
+    margin: 0;
+    padding: 0;
+    color: #323232;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.card-up .card-open {
+    margin: 0;
+    padding: 0;
+    color: #B5ADAD;
+    font-size: 1.4em;
+    font-weight: 400;
+}
+
+.card-down {
+    padding-top: 1em;
+    color: #514C4C;
+    font-size: 1.4em;
+}
+
+.card-down p {
+    margin: 0;
+    padding: 0;
+}
+
+.card-down p:first-child {
+    padding-bottom: .5em;
+}
+
+.card-down i {
+    margin-right: .5em;
+    padding: .4em;
+    background-color: #6a1b9a;
+    color: #FFF;
+    border-radius: 20px;
+}
+
+.card-down a {
+    color: #514C4C;
+    text-decoration: none;
+    transition: all .5s;
+}
+
+.card-down a:hover {
+    color: #6a1b9a;
 }
